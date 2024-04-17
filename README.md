@@ -66,7 +66,7 @@ You can install Postman via this website: https://www.postman.com/downloads/
     -   [x] Commit: `Create Notification database and Notification repository struct skeleton.`
     -   [x] Commit: `Implement add function in Notification repository.`
     -   [x] Commit: `Implement list_all_as_string function in Notification repository.`
-    -   [ ] Write answers of your learning module's "Reflection Subscriber-1" questions in this README.
+    -   [x] Write answers of your learning module's "Reflection Subscriber-1" questions in this README.
 -   **STAGE 3: Implement services and controllers**
     -   [x] Commit: `Create Notification service struct skeleton.`
     -   [x] Commit: `Implement subscribe function in Notification service.`
@@ -77,7 +77,7 @@ You can install Postman via this website: https://www.postman.com/downloads/
     -   [x] Commit: `Implement receive function in Notification controller.`
     -   [x] Commit: `Implement list_messages function in Notification service.`
     -   [x] Commit: `Implement list function in Notification controller.`
-    -   [ ] Write answers of your learning module's "Reflection Subscriber-2" questions in this README.
+    -   [x] Write answers of your learning module's "Reflection Subscriber-2" questions in this README.
 
 ## Your Reflections
 This is the place for you to write reflections:
@@ -86,4 +86,32 @@ This is the place for you to write reflections:
 
 #### Reflection Subscriber-1
 
+1. In this tutorial, we used RwLock<> to synchronise the use of Vec of Notifications. Explain why it is necessary for this case, and explain why we do not use Mutex<> instead?
+
+    ***Answer:***
+    It is necessary to use RwLock<> to synchronise the use of Vec of Notifications because we want to allow multiple readers to access the data at the same time. RwLock<> allows multiple readers to access the data concurrently, but only one writer can access the data at a time. This is useful in our case because we have multiple subscribers that will read the data concurrently, but only one publisher that will write the data. If we use Mutex<>, it will only allow one thread to access the data at a time, which is not suitable for our case.
+
+2. In this tutorial, we used lazy_static external library to define Vec and DashMap as a “static” variable. Compared to Java where we can mutate the content of a static variable via a static function, why did not Rust allow us to do so?
+
+    ***Answer:***
+    Rust does not allow us to mutate the content of a static variable because it is not thread-safe. Rust is a systems programming language that emphasizes safety and performance. Rust does not allow us to mutate the content of a static variable because it can cause
+
 #### Reflection Subscriber-2
+
+1. Have you explored things outside of the steps in the tutorial, for example: src/lib.rs? If not, explain why you did not do so. If yes, explain things that you have learned from those other parts of code.
+
+    ***Answer:***
+    No, I have not explored things outside of the steps in the tutorial. I did not do so because I wanted to focus on completing the tutorial first. I wanted to make sure that I understand the tutorial and can complete it successfully before exploring other parts of the code.
+
+2. Since you have completed the tutorial by now and have tried to test your notification system by spawning multiple instances of Receiver, explain how Observer pattern eases you to plug in more subscribers. How about spawning more than one instance of Main app, will it still be easy enough to add to the system?
+
+    ***Answer:***
+    The Observer pattern eases us to plug in more subscribers because it allows us to add new subscribers without modifying the publisher. We can create a new subscriber that implements the Observer trait and subscribes to the publisher. We can then add the new subscriber to the list of subscribers in the publisher. This makes it easy to add new subscribers to the system without modifying the publisher.
+
+    Spawning more than one instance of the Main app will still be easy enough to add to the system. We can create a new instance of the Main app and run it on a different port. We can then configure the new instance of the Main app to send notifications to the new instance of the Receiver. This makes it easy to add new instances of the Main app to the system without modifying the existing instances.
+
+3. Have you tried to make your own Tests, or enhance documentation on your Postman collection? If you have tried those features, tell us whether it is useful for your work (it can be your tutorial work or your Group Project).
+
+    ***Answer:***
+    No, I have not tried to make my own Tests or enhance documentation on my Postman collection. I did not do so because I wanted to focus on completing the tutorial first. I wanted to make sure that I understand the tutorial and can complete it successfully before exploring other features.
+
